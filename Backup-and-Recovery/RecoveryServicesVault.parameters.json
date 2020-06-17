@@ -1,0 +1,42 @@
+﻿{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "BackupvaultName": {
+      "value": ""
+    },
+    "PolicyName": {
+      "value": "backuppolicy001"
+    },
+    "timeZone": {
+      "value": "UTC"
+    },
+    "scheduleRunTimes": {
+      "value": [
+        "23:30:00Z"
+      ]
+    },
+    "dailyRetentionDurationCount": {
+      "value": 30
+    },
+    "daysOfTheWeek": {
+      "value": [
+        "Saturday"
+      ]
+    },
+    "weeklyRetentionDurationCount": {
+      "value": 56
+    },
+    "monthlyRetentionDurationCount": {
+      "value": 60
+    },
+    "monthsOfYear": {
+      "value": [
+        "January"
+      ]
+    },
+    "yearlyRetentionDurationCount": {
+      "value": 10
+    }
+  }
+}
