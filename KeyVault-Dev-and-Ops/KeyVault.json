@@ -1,0 +1,142 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+      "keyVaultName": {
+        "type": "string",
+        "metadata": {
+          "description": "Name of the Key Vault"
+        }
+      },
+      "tenantId": {
+        "type": "string",
+        "defaultValue": "[subscription().tenantId]",
+        "metadata": {
+          "description": "Tenant Id of the subscription. Get using Get-AzureRmSubscription cmdlet or Get Subscription API"
+        }
+      },
+      "objectIdForBackup": {
+        "type": "string",
+        "metadata": {
+          "description": "Object Id of the SP that will be used by Azure Backup. Get objectId using 'az ad sp list --display-name 'Backup Management Service'' or use PS command 'Get-AzureRmADServicePrincipal -SearchString "Backup Management Service" ' "
+        }
+      },
+      "objectIdForDeployment": {
+        "type": "string",
+        "metadata": {
+          "description": "Object Id of the SP that will be used by Azure DevOps to execute deployments(you may want to skip). Determine which service connection is used and then fetch the objectId in Azure Active Directory"
+        }
+      },
+      "skuName": {
+        "type": "string",
+        "defaultValue": "Standard",
+        "allowedValues": [
+          "Standard",
+          "Premium"
+        ],
+        "metadata": {
+          "description": "SKU for the vault"
+        }
+      },
+      "enableVaultForDeployment": {
+        "type": "bool",
+        
+        "allowedValues": [
+          true,
+          false
+        ],
+        "metadata": {
+          "description": "Specifies if the vault is enabled for a VM deployment"
+        }
+      },
+      "enableVaultForDiskEncryption": {
+        "type": "bool",
+        
+        "allowedValues": [
+          true,
+          false
+        ],
+        "metadata": {
+          "description": "Specifies if the azure platform has access to the vault for enabling disk encryption scenarios."
+        }
+      },
+      "enabledForTemplateDeployment": {
+        "type": "bool",
+       
+        "allowedValues": [
+          true,
+          false
+        ],
+        "metadata": {
+          "description": "Specifies whether Azure Resource Manager is permitted to deploy the template in the key vault."
+        }
+      }
+ 
+    },
+     "variables": {
+         
+      },
+    "resources": [
+      {
+        "type": "Microsoft.KeyVault/vaults",
+        "name": "[parameters('keyVaultName')]",
+        "apiVersion": "2018-02-14",
+        "location": "[resourceGroup().location]",
+        "properties": {
+          "enabledForDeployment": "[parameters('enableVaultForDeployment')]",
+          "enabledForDiskEncryption": "[parameters('enableVaultForDiskEncryption')]",
+          "enabledForTemplateDeployment": "[parameters('enabledForTemplateDeployment')]",
+          "tenantId": "[parameters('tenantId')]",
+  
+  
+  
+          "accessPolicies": [
+            {
+              "tenantId": "[parameters('tenantId')]",
+              "objectId": "[parameters('objectIdForDeployment')]",
+              "permissions": {
+                "keys": [
+                  "all"
+                ],
+                "secrets": [
+                  "all"
+                ],
+                "certificates": [
+                  "all"
+                ]
+              }
+            },
+            {
+              "tenantId": "[parameters('tenantId')]",
+              "objectId": "[parameters('objectIdForBackup')]",
+              "permissions": {
+                "keys": [
+                  "all"
+                ],
+                "secrets": [
+                  "all"
+                ],
+                "certificates": [
+                  "all"
+                ]
+              }
+            }
+  
+          ],
+          "sku": {
+            "name": "[parameters('skuName')]",
+            "family": "A"
+  
+          },
+           "networkAcls": {
+  
+              "defaultAction": "Deny",
+              "bypass": "AzureServices",
+              "virtualNetworkRules": [
+              ]
+            }
+        }
+      }
+     
+    ]
+  }
