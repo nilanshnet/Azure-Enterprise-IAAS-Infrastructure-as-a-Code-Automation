@@ -1,0 +1,43 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+  "parameters": {
+    "workspaceName": {
+      "type": "string"
+    },
+    "sku": {
+      "type": "string",
+      "allowedValues": [
+        "PerNode",
+        "PerGB2018",
+        "Standard",
+        "Free",
+        "Premium",
+        "Standalone",
+        "Unlimited",
+		"CapacityReservation"
+      ]
+    },
+	"dataretentionperiod" : { 
+	"type": "integer",
+	"metadata": {
+     "description": "The workspace data retention in days. -1 means Unlimited retention for the Unlimited Sku. 730 days is the maximum allowed for all other Skus."
+        }
+	}
+  },
+    "variables": {},
+    "resources": [
+      {
+        "type": "Microsoft.OperationalInsights/workspaces",
+        "name": "[parameters('workspaceName')]",
+        "apiVersion": "2020-03-01-preview",
+        "location": "[resourceGroup().location]",
+        "properties": {
+          "sku": {
+            "name": "[parameters('sku')]"
+          },
+		  "retentionInDays": "[parameters('dataretentionperiod')]"
+        }
+      }
+    ]
+}
