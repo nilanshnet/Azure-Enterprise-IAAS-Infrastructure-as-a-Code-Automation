@@ -1,4 +1,4 @@
-# IAC-Eh
+# Infrastructure-as-a-Code
 Contains Infrastructure as code ARM templates and PowerShell scripts to be used for Enterprise infrastructure deployments on Azure  
 
 3.1	Common Resources 
