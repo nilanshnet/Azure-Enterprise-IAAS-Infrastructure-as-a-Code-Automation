@@ -1,0 +1,357 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "HubvnetName": {
+      "type": "string",
+     
+      "metadata": {
+        "description": "Name of the HUB Virtual Network"
+      }
+    },
+    "SpokeVnetName": {
+      "type": "string",
+     
+      "metadata": {
+        "description": "Name of the Spoke Virtual Network"
+      }
+    },
+    "HUBvnetAddressPrefix": {
+      "type": "string",
+     
+      "metadata": {
+        "description": "Value of the HUB-VNET Address prefix"
+      }
+    },
+    "SPOKEvnetAddressPrefix": {
+      "type": "string",
+     
+      "metadata": {
+        "description": "Value of the SPOKE-VNET Address prefix"
+      }
+    },
+    "gatewaySubnetPrefix": {
+      "type": "string",
+    
+      "metadata": {
+        "description": "Value of the Gateway Subnet Address Prefix for Hub Vnet"
+      }
+    },
+    "firewallSubnetPrefix": {
+      "type": "string",
+      
+      "metadata": {
+        "description": "Value of the firewall Subnet Address Prefix for Spoke Vnet"
+      }
+    },
+    "gatewaySubnetName": {
+      "type": "string",
+      
+      "metadata": {
+        "description": "Name of the Gateway Subnet in HUB"
+      }
+    },
+    "firewallSubnetName": {
+      "type": "string",
+     
+      "metadata": {
+        "description": "Name of the Firewall Subnet in HUB"
+      }
+    },
+    "Subnet1Prefix": {
+      "type": "string",
+      
+      "metadata": {
+        "description": "Value of the First Subnet Address Prefix"
+      }
+    },
+    "Subnet2Prefix": {
+      "type": "string",
+     
+      "metadata": {
+        "description": "Value of the Second Subnet Address Prefix"
+      }
+    },
+    "Subnet3Prefix": {
+      "type": "string",
+      
+      "metadata": {
+        "description": "Value of the Third Subnet Address Prefix"
+      }
+    },
+    "Subnet4Prefix": {
+      "type": "string",
+     
+      "metadata": {
+        "description": "Value of the fourth Subnet Address Prefix"
+      }
+    },
+    "Subnet5Prefix": {
+      "type": "string",
+     
+      "metadata": {
+        "description": "Value of the fifth Subnet Address Prefix"
+      }
+    
+    },
+    "Subnet1Name": {
+      "type": "string",
+      
+      "metadata": {
+        "description": "Name of the First Subnet in spoke"
+      }
+    },
+    "Subnet2Name": {
+      "type": "string",
+     
+      "metadata": {
+        "description": "Name of the Admin Subnet"
+      }
+    },
+    "Subnet3Name": {
+      "type": "string",
+     
+      "metadata": {
+        "description": "Name of the Portal Subnet"
+      }
+    },
+    "Subnet4Name": {
+      "type": "string",
+      
+      "metadata": {
+        "description": "Name of the NRAFS Subnet"
+      }
+    },
+    "Subnet5Name": {
+      "type": "string",
+     
+      "metadata": {
+        "description": "Name of the Management Subnet"
+      }
+    },
+    "DDOSprotectionPlanID": {
+      "type": "string",
+     
+      "metadata": {
+        "description": "Name of the Management Subnet"
+      }
+    }
+  },
+  "variables": {
+    
+    
+  },
+  "resources": [
+    {
+      "apiVersion": "2018-02-01",
+      "type": "Microsoft.Network/virtualNetworks",
+      "name": "[parameters('HubvnetName')]",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "addressSpace": {
+          "addressPrefixes": [
+            "[parameters('HUBvnetAddressPrefix')]"
+          ]
+        },
+        "subnets": [
+          {
+            "name": "[parameters('gatewaySubnetname')]",
+            "properties": {
+              "addressPrefix": "[parameters('gatewaySubnetPrefix')]",
+              "serviceEndpoints": [
+                {
+                  "service": "Microsoft.Storage",
+                  "locations": "[resourceGroup().location]"                 
+                },
+                {
+
+                  "service": "Microsoft.KeyVault",
+                  "locations": "[resourceGroup().location]"
+                }
+              ] 
+            }
+          },
+          {
+            "name": "[parameters('firewallSubnetname')]",
+            "properties": {
+              "addressPrefix": "[parameters('firewallSubnetPrefix')]",
+              "serviceEndpoints": [
+                {
+                  "service": "Microsoft.Storage",
+                  "locations": "[resourceGroup().location]"                 
+                },
+                {
+
+                  "service": "Microsoft.KeyVault",
+                  "locations": "[resourceGroup().location]"
+                }
+              ]
+              
+            } 
+          }
+        ],
+        "enableDdosProtection" : true,
+        "ddosProtectionPlan" : {
+          "id" : "[parameters('DDOSprotectionPlanID')]"
+        }
+      }
+    },
+
+    {
+      "apiVersion": "2018-02-01",
+      "type": "Microsoft.Network/virtualNetworks",
+      "name": "[parameters('SpokeVnetName')]",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "addressSpace": {
+          "addressPrefixes": [
+            "[parameters('SPOKEvnetAddressPrefix')]"
+          ]
+        },
+        "subnets": [
+                  {
+            "name": "[parameters('Subnet1Name')]",
+            "properties": {
+              "addressPrefix": "[parameters('Subnet1Prefix')]",
+              "serviceEndpoints": [
+                {
+                  "service": "Microsoft.Storage",
+                  "locations": "[resourceGroup().location]"                 
+                },
+                {
+
+                  "service": "Microsoft.KeyVault",
+                  "locations": "[resourceGroup().location]"
+                }
+              ] 
+              
+            }
+          },
+          {
+            "name": "[parameters('Subnet2Name')]",
+            "properties": {
+              "addressPrefix": "[parameters('Subnet2Prefix')]",
+              "serviceEndpoints": [
+                {
+                  "service": "Microsoft.Storage",
+                  "locations": "[resourceGroup().location]"                 
+                },
+                {
+
+                  "service": "Microsoft.KeyVault",
+                  "locations": "[resourceGroup().location]"
+                }
+              ] 
+              
+            }
+          },
+          {
+            "name": "[parameters('Subnet3Name')]",
+            "properties": {
+              "addressPrefix": "[parameters('Subnet3Prefix')]",
+              "serviceEndpoints": [
+                {
+                  "service": "Microsoft.Storage",
+                  "locations": "[resourceGroup().location]"                 
+                },
+                {
+
+                  "service": "Microsoft.KeyVault",
+                  "locations": "[resourceGroup().location]"
+                }
+              ] 
+              
+            }
+          },
+          {
+            "name": "[parameters('Subnet4Name')]",
+            "properties": {
+              "addressPrefix": "[parameters('Subnet4Prefix')]",
+              "serviceEndpoints": [
+                {
+                  "service": "Microsoft.Storage",
+                  "locations": "[resourceGroup().location]"                 
+                },
+                {
+
+                  "service": "Microsoft.KeyVault",
+                  "locations": "[resourceGroup().location]"
+                }
+              ] 
+              
+            }
+          },
+          {
+            "name": "[parameters('Subnet5Name')]",
+            "properties": {
+              "addressPrefix": "[parameters('Subnet5Prefix')]",
+              "serviceEndpoints": [
+                {
+                  "service": "Microsoft.Storage",
+                  "locations": "[resourceGroup().location]"                 
+                },
+                {
+
+                  "service": "Microsoft.KeyVault",
+                  "locations": "[resourceGroup().location]"
+                }
+              ] 
+              
+            }
+          }
+        ],
+        "enableDdosProtection" : true,
+        "ddosProtectionPlan" : {
+          "id" : "[parameters('DDOSprotectionPlanID')]"
+        }
+      }
+      
+    },
+
+    {
+      "apiVersion": "2017-06-01",
+       "type": "Microsoft.Network/virtualNetworks/virtualNetworkPeerings",
+       "name": "[concat(parameters('HubvnetName'), '/peering')]",
+       "location": "[resourceGroup().location]",
+       "dependsOn": [
+         "[concat('Microsoft.Network/virtualNetworks/', parameters('HubvnetName'))]",
+         "[concat('Microsoft.Network/virtualNetworks/', parameters('SpokeVnetName'))]"
+         ],
+
+         "comments": "This is the peering from HUB vNet to Spoke vNet",
+         "properties":
+          {
+            "allowVirtualNetworkAccess": true,
+             "allowForwardedTraffic": false,
+              "allowGatewayTransit": true,
+              "useRemoteGateways": false,
+              "remoteVirtualNetwork": {
+              "id": "[resourceId('Microsoft.Network/virtualNetworks',parameters('SpokeVnetName'))]"
+               }
+           }
+         },
+
+         { 
+          "apiVersion": "2017-06-01",
+          "type": "Microsoft.Network/virtualNetworks/virtualNetworkPeerings",
+          "name": "[concat(parameters('SpokeVnetName'), '/peering')]",
+          "location": "[resourceGroup().location]",
+          "dependsOn": [
+            "[concat('Microsoft.Network/virtualNetworks/', parameters('HubvnetName'))]",
+            "[concat('Microsoft.Network/virtualNetworks/', parameters('SpokeVnetName'))]"
+          ],
+          "comments": "This is the peering from vNet 2 to vNet 1",
+          "properties": {
+              "allowVirtualNetworkAccess": true,
+              "allowForwardedTraffic": true,
+              "allowGatewayTransit": false,
+              "useRemoteGateways": false,
+              "remoteVirtualNetwork": {
+                  "id": "[resourceId('Microsoft.Network/virtualNetworks',parameters('HubvnetName'))]"
+              }
+          } 
+         }
+  ],
+        "outputs": {
+        }
+      }
