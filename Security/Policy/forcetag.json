@@ -1,0 +1,17 @@
+{
+  "properties": {
+    "displayName": "Enforce use of tags on resources, doesnt include resource groups",
+    "policyType": "Custom",
+    "mode": "Indexed",
+    "parameters": {},
+    "policyRule": {
+      "if": {
+        "field": "tags",
+        "exists": "false"
+      },
+      "then": {
+        "effect": "deny"
+      }
+    }
+  }
+}
