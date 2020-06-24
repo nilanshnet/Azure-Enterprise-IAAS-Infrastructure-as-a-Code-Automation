@@ -1,0 +1,33 @@
+For naming convetion
+
+"?" - any alphabet (a-z and A-Z)
+"#" = any number (0-9)
+
+match - matches the exact lenght and charater type
+for example : "match" : "abc-??-#"
+correct examples - "abc-aa-2" , "abc-zZ-9"
+incorrect examples - "2-abc-AA" , "abc-33-Z" , "Zabc23--" , etc
+
+like - needs required charaters in name
+Note : * means any character (null, a-z, A-Z, 0-9) and combination of these charaters
+for example : "like" : "*abc-*"
+correct examples - "12abc-xyz" , "abc-zZ-34" , "abc-23"
+incorrect examples - "2-AA" , "abc33-Z" , "Zxyz--" , etc
+
+to add more naming convention add one of these code blocks
+
+{
+"not": {
+"field": "name",
+"like": "abc-*"
+        }
+}
+
+-------------------OR----------------
+
+{
+"not": {
+"field": "name",
+"match": "abc-?-#"
+        }
+}
