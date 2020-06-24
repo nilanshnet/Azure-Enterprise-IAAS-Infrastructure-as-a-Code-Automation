@@ -1,0 +1,34 @@
+{
+    "properties": {
+        "displayName": "Match multiple name patterns.",
+        "description": "Allows one of multiple naming patterns for resources.",
+        "mode": "Indexed",
+        "policyRule": {
+            "if": {
+                "allOf": [
+                    {
+                        "not": {
+                            "field": "name",
+                            "match": "abc??????"
+                        }
+                    },
+                    {
+                        "not": {
+                            "field": "name",
+                            "match": "abc-???-##"
+                        }
+                    },
+                    {
+                        "not": {
+                            "field": "name",
+                            "like": "abc-*"
+                        }
+                    }
+                ]
+            },
+            "then": {
+                "effect": "Audit"
+            }
+        }
+    }
+}
