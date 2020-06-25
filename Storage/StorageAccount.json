@@ -1,0 +1,175 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "StorageAccountName": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the Storage Account"
+      }
+    },
+    "SkuTier": {
+      "type": "string",
+      
+      "allowedValues": [
+        "Standard",
+        "Premier"
+      ],
+      "metadata": {
+        "description": "Performance tier of the storage Account"
+      }
+    },
+    "storageAccountType": {
+      "type": "string",
+      
+      "allowedValues": [
+        "Standard_LRS",
+        "Standard_GRS",
+        "Standard_ZRS",
+        "Premium_LRS"
+      ],
+      "metadata": {
+        "description": "Storage Account type"
+      }
+    },
+    "virtualNetworkRG": {
+      "type": "String",
+      "metadata": {
+         "description": "Name of the Resource Group where virtual Network is present(if you want to restrict access to this particular Vnet)"
+            }
+        },
+    "vnetName": {
+          "type": "String",
+          "metadata": {
+           "description": "Name of the Virtual Network you want to allow access for "
+            }
+        },
+        "Subnet1Name": {
+            "type": "string",
+            
+            "metadata": {
+              "description": "First Subnet Name within the aforementioned Vnet, you want to allow access for "
+            }
+          },
+          "Subnet2Name": {
+            "type": "string",
+           
+            "metadata": {
+              "description": "Second Subnet Name"
+            }
+          },
+          "Subnet3Name": {
+            "type": "string",
+            
+            "metadata": {
+              "description": "Third Subnet Name"
+            }
+          },
+          "Subnet4Name": {
+            "type": "string",
+            
+            "metadata": {
+              "description": "Fourth Subnet Name"
+            }
+          },
+          "Subnet5Name": {
+            "type": "string",
+           
+            "metadata": {
+              "description": "Fifth Subnet Name"
+            }
+          },
+          "Subnet6Name": {
+            "type": "string",
+            
+            "metadata": {
+              "description": "Sixth Subnet Name"
+            }
+          },
+          "Subnet7Name": {
+            "type": "string",
+           
+            "metadata": {
+              "description": "Seventh Subnet Name"
+            }
+          },
+          "Subnet8Name": {
+            "type": "string",
+            
+            "metadata": {
+              "description": "Eighth Subnet Name"
+            }
+          }
+  },
+  "variables": {
+
+ "subnets":{
+        "subnet2ref": "[concat(resourceId(parameters('virtualNetworkRG'), 'Microsoft.Network/virtualNetworks', parameters('vnetname')) , '/subnets/' , parameters('subnet2name'))]",
+        "subnet3ref": "[concat(resourceId(parameters('virtualNetworkRG'), 'Microsoft.Network/virtualNetworks', parameters('vnetname')) , '/subnets/' , parameters('subnet3name'))]",
+        "subnet4ref": "[concat(resourceId(parameters('virtualNetworkRG'), 'Microsoft.Network/virtualNetworks', parameters('vnetname')) , '/subnets/' , parameters('subnet4name'))]",   
+        "subnet5ref": "[concat(resourceId(parameters('virtualNetworkRG'), 'Microsoft.Network/virtualNetworks', parameters('vnetname')) , '/subnets/' , parameters('subnet5name'))]",
+        "subnet6ref": "[concat(resourceId(parameters('virtualNetworkRG'), 'Microsoft.Network/virtualNetworks', parameters('vnetname')) , '/subnets/' , parameters('subnet6name'))]",
+        "subnet7ref": "[concat(resourceId(parameters('virtualNetworkRG'), 'Microsoft.Network/virtualNetworks', parameters('vnetname')) , '/subnets/' , parameters('subnet7name'))]",
+        "subnet8ref": "[concat(resourceId(parameters('virtualNetworkRG'), 'Microsoft.Network/virtualNetworks', parameters('vnetname')) , '/subnets/' , parameters('Subnet8Name'))]",
+        "subnet1ref": "[concat(resourceId(parameters('virtualNetworkRG'), 'Microsoft.Network/virtualNetworks', parameters('vnetname')) , '/subnets/' , parameters('Subnet1Name'))]"
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Storage/storageAccounts",
+      "name": "[parameters('StorageAccountName')]",
+      "location": "[resourceGroup().location]",
+      "apiVersion": "2018-07-01",
+      "sku": {
+        "name": "[parameters('storageAccountType')]",
+        "tier": "[parameters('SkuTier')]"
+      },
+      "kind": "Storage",
+      "properties": {
+        "networkAcls": {
+          "bypass": "AzureServices",
+          "defaultAction": "Deny",
+          "virtualNetworkRules": [
+				{
+                             "id": "[variables('subnets').subnet2ref]",
+					"action": "Allow" 
+                            },
+                            {
+                                "id": "[variables('subnets').subnet3ref]",
+					"action": "Allow"     
+                            },
+                            {
+                                "id": "[variables('subnets').subnet4ref]",
+					"action": "Allow"      
+                            },
+                            {
+                                "id": "[variables('subnets').subnet5ref]",
+					"action": "Allow"      
+                            },
+                            {
+                                "id": "[variables('subnets').subnet6ref]",
+					"action": "Allow"      
+                            },
+                            {
+                                "id": "[variables('subnets').subnet7ref]",
+					"action": "Allow"      
+                            },
+                            {
+                                "id": "[variables('subnets').subnet8ref]",
+					"action": "Allow"      
+                            },
+                            {
+                                "id": "[variables('subnets').subnet1ref]",
+					"action": "Allow"      
+                            }
+	],
+          "ipRules": []
+        },
+        "supportsHttpsTrafficOnly" : true
+      }
+    }
+  ],
+  "outputs": {
+    
+  }
+}
