@@ -1,4 +1,4 @@
-$keyVaultName = "arv-dev-sec-kvt-001"
+$keyVaultName = "azr-sec-kvt-001"
 $keyEncryptionKeyName = "diskencryptionkey001"
 
  
