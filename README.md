@@ -10,15 +10,15 @@ Contains Infrastructure as code ARM templates and PowerShell scripts to be used 
 
 1.	Common Resources
   	1. Create and configure 
-      -	[ ] Create Key vault and grant access for disk encryption
-      -	[ ] Create Log analytics workspace
-      -	[ ] Setup Recovery Service vault and backup policy for VM backup
-      -	[ ] Apply resource lock on business-critical resources
-      -	[ ] Create Azure policies
-      -	[ ] Enforce Tags
-      -	[ ] Enforce Naming convention
-      -	[ ] Enforce resource deployment location
-      -	[ ] Stop RDP and SSH access from internet
+        -	[ ] Create Key vault and grant access for disk encryption
+        -	[ ] Create Log analytics workspace
+        -	[ ] Setup Recovery Service vault and backup policy for VM backup
+        -	[ ] Apply resource lock on business-critical resources
+        -	[ ] Create Azure policies
+        -	[ ] Enforce Tags
+        -	[ ] Enforce Naming convention
+        -	[ ] Enforce resource deployment location
+        -	[ ] Stop RDP and SSH access from internet
 
 
 2	Compute 
