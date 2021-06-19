@@ -19,6 +19,8 @@ Contains Infrastructure as code ARM templates and PowerShell scripts to be used 
         -	[ ] Enforce Naming convention
         -	[ ] Enforce resource deployment location
         -	[ ] Stop RDP and SSH access from internet
+
+
 2.  Compute 
     1. Create and configure
         -	[ ] Create new resource group or use existing
@@ -35,7 +37,8 @@ Contains Infrastructure as code ARM templates and PowerShell scripts to be used 
         -	[ ] Option to attach to log analytics workspace
         -	[ ] Option to install Microsoft Anti-malware protection
         -	[ ] Option to initiate backup
-    2.Manage
+
+    2. Manage
         -	[ ] Add additional disk to the VM
         -	[ ] Do disk encryption to the VM
         -	[ ] Attach ad hoc public IP
@@ -43,11 +46,11 @@ Contains Infrastructure as code ARM templates and PowerShell scripts to be used 
         - [ ] Configure VM Start and Stop
         -	[ ] Enable backup on existing VMs
 
-  2.3	Security
-    -	Apply resource lock on business-critical resources
-    -	Option to install Microsoft Anti-malware protection
-    -	Attach to log analytics workspace to connect with Security center and Azure Monitor
-    -	Apply resource lock on business-critical resources
+    3.	Security
+        -	[ ] Apply resource lock on business-critical resources
+        -	[ ] Option to install Microsoft Anti-malware protection
+        -	[ ] Attach to log analytics workspace to connect with Security center and Azure Monitor
+        -	[ ] Apply resource lock on business-critical resources
 
 
 3	Networking
