@@ -9,7 +9,7 @@ Contains Infrastructure as code ARM templates and PowerShell scripts to be used 
 ## General IaC Automation Catalog
 
 1.	Common Resources 
-  1.1.	Create and configure 
+  1.	Create and configure 
         -	Create Key vault and grant access for disk encryption
         -	Create Log analytics workspace
         -	Setup Recovery Service vault and backup policy for VM backup
