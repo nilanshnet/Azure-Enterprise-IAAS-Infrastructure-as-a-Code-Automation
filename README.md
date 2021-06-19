@@ -1,24 +1,35 @@
-# Infrastructure-as-a-Code
-Contains Infrastructure as code ARM templates and PowerShell scripts to be used for Enterprise infrastructure deployments on Azure for automation purposes 
+# Infrastructure-as-a-Code (IaC) for Azure resource configurations and deployments
+Contains Infrastructure as code - ARM templates and PowerShell scripts to be used for resource deployments on Azure cloud and for automation purposes 
 
-## IaC by Category using PowerShell and Azure Resource Manager Tempalates
-
+## Available IaC for services and resources by category:
 ### Backup and Recovery
+Recovery Services Vault for Backup and Site recovery (BCDR)
+### General
+Azure Resource Locks
+### Monitor
+Log Analytics workspace
+### KeyVault Dev and Ops
+Azure Key Vault, Key vault keys, Azure Disk Encryption 
+### Network
+Virtual Networks
+### Security
+Azure Policies, Virtual Machine extensions
+### Storage
+Azure Storage Account, Azure File shares, Blobs, and other storage services
 
-
-## General IaC Automation Catalog
+## IaC Automation Catalog using PowerShell and Azure Resource Manager (ARM) Tempalates
 
 1.	Common Resources
-  	1. Create and configure 
-        -	[ ] Create Key vault and grant access for disk encryption
-        -	[ ] Create Log analytics workspace
-        -	[ ] Setup Recovery Service vault and backup policy for VM backup
-        -	[ ] Apply resource lock on business-critical resources
-        -	[ ] Create Azure policies
-        -	[ ] Enforce Tags
-        -	[ ] Enforce Naming convention
-        -	[ ] Enforce resource deployment location
-        -	[ ] Stop RDP and SSH access from internet
+  	1. Create and configure
+        -	[X] Create Key vault and grant access for disk encryption
+        -	[X] Create Log analytics workspace
+        -	[X] Setup Recovery Service vault and backup policy for VM backup
+        -	[X] Apply Azure Resource lock on business-critical resources
+        -	[X] Create Azure policies
+          -	[X] Enforce Tags
+          -	[X] Enforce Naming convention
+          -	[X] Enforce resource deployment location
+          -	[X] Stop RDP and SSH access from internet
 
 
 2.  Compute 
@@ -36,58 +47,56 @@ Contains Infrastructure as code ARM templates and PowerShell scripts to be used 
         -	[ ] Option to do disk encryption
         -	[ ] Option to attach to log analytics workspace
         -	[ ] Option to install Microsoft Anti-malware protection
-        -	[ ] Option to initiate backup
+        -	[X] Option to initiate backup
 
     2. Manage
-        -	[ ] Add additional disk to the VM
-        -	[ ] Do disk encryption to the VM
-        -	[ ] Attach ad hoc public IP
+        -	[ ] Add additional disk to an existing VM
+        -	[ ] Do disk encryption for an existing VM
+        -	[ ] Attach ad-hoc public IP
         -	[ ] Attach to log analytics workspace
         - [ ] Configure VM Start and Stop
-        -	[ ] Enable backup on existing VMs
+        -	[X] Enable backup on existing VMs
 
     3.	Security
-        -	[ ] Apply resource lock on business-critical resources
-        -	[ ] Option to install Microsoft Anti-malware protection
+        -	[X] Apply resource lock on business-critical resources
+        -	[X] Option to install Microsoft Anti-malware protection
         -	[ ] Attach to log analytics workspace to connect with Security center and Azure Monitor
-        -	[ ] Apply resource lock on business-critical resources
+        -	[X] Azure Disk Encryption for existing VMs
 
 
-3	Networking
+3. Networking
+    1. Create and configure
+        -	[X] Hub and Spoke Topology configuration with upto 
+        -	[X] Create up to 5 Subnets in hub and spoke Virtual Networks
+        -	[ ] Deployment to peer the Hub and Spoke Virtual Networks 
+        -	[ ] Deployment to peer Spoke and Spoke Virtual Networks 
+        -	[ ] Create Network Security Groups with default rules and attach to subnets
 
-3.1	Create and configure
-•	Hub and Spoke Topology configuration
-•	Create Hub and up to 5 Spoke Virtual Networks
-•	Create up to 5 Subnets in hub and spoke Virtual Networks
-•	Deployment to peer the Hub and Spoke Virtual Networks 
-•	Deployment to peer Spoke and Spoke Virtual Networks 
-•	Create Network Security Groups with default rules and attach to subnets
+    2.	Manage
+        -	[ ] Create 3 additional spoke Virtual Networks and up to 5 subnets
+        -	[ ] Peer the Hub and Spoke Virtual Networks after deployment
+        -	[ ] Peer Spoke and Spoke Virtual Networks after deployment
+        -	[ ] Create additional subnets
 
-3.2	Manage
-•	Create 3 additional spoke Virtual Networks and up to 5 subnets
-•	Peer the Hub and Spoke Virtual Networks after deployment
-•	Peer Spoke and Spoke Virtual Networks after deployment
-•	Create additional subnets
-
-3.3	Secure
-•	Enable standard DDoS for all the Virtual Networks
-•	Enable Service Endpoints
-•	Create ad-hoc NSGs with default rules and attach to subnets
+    3.	Secure
+        -	[ ] Enable standard DDoS for all the Virtual Networks
+        -	[ ] Enable Service Endpoints
+        -	[ ] Create ad-hoc NSGs with default rules and attach to subnets
 
 
-4	Storage
+4.	Storage
 
-4.1	Create and Configure
-•	Create storage account with performance, Account kind, Replication type and access tier
-•	Define access level with network
-•	Enable secure transfer
-•	Option for soft delete
-•	Option to create Blob container, file share, table, and queue
+    1.	Create and Configure
+        -	[X] Create storage account with performance, Account kind, Replication type and access tier
+        -	[X] Define access level with network
+        -	[X] Enable secure transfer
+        -	[ ] Option for soft delete
+        -	[ ] Option to create Blob container, file share, table, and queue
 
-4.2	Manage
-•	Create additional Blob container, file share, table, and queue in existing storage
+    2.	Manage
+        -	[X] Create additional Blob container, file share, table, and queue in existing storage
 
-4.3	Secure
-•	Enable access level with n/w
-•	Enable secure transfer
-•	Enable soft delete
+    3.	Secure
+        -	[X] Restrict netowrk access level with specific subnets 
+        -	[X] Enable secure transfer
+        -	[ ] Enable soft delete
