@@ -1,21 +1,30 @@
 # Infrastructure-as-a-Code (IaC) for Azure resource configurations and deployments
 Contains Infrastructure as code - ARM templates and PowerShell scripts to be used for resource deployments on Azure cloud and for automation purposes 
 
+
 ## Available IaC for services and resources by category:
+
 ### Backup and Recovery
 Recovery Services Vault for Backup and Site recovery (BCDR)
+
 ### General
 Azure Resource Locks
+
 ### Monitor
 Log Analytics workspace
+
 ### KeyVault Dev and Ops
 Azure Key Vault, Key vault keys, Azure Disk Encryption 
+
 ### Network
 Virtual Networks
+
 ### Security
 Azure Policies, Virtual Machine extensions
+
 ### Storage
 Azure Storage Account, Azure File shares, Blobs, and other storage services
+
 
 ## IaC Automation Catalog using PowerShell and Azure Resource Manager (ARM) Tempalates
 
