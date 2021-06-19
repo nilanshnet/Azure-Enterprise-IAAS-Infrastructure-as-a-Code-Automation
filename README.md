@@ -4,13 +4,13 @@ Contains Infrastructure as code - ARM templates and PowerShell scripts to be use
 
 ## Available IaC for services and resources by category:
 
-### Backup and Recovery
+#### Backup and Recovery
 Recovery Services Vault for Backup and Site recovery (BCDR)
 
-### General
+#### General
 Azure Resource Locks
 
-### Monitor
+#### Monitor
 Log Analytics workspace
 
 ### KeyVault Dev and Ops
