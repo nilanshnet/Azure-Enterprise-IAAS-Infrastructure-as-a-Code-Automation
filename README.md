@@ -4,13 +4,13 @@ Contains Infrastructure as code - ARM templates and PowerShell scripts to be use
 
 ## Available IaC for services and resources by category:
 
-#### Backup and Recovery
-Recovery Services Vault for Backup and Site recovery (BCDR)
+- **Backup and Recovery**
+  Recovery Services Vault for Backup and Site recovery (BCDR)
 
-#### General
-Azure Resource Locks
+- **General**
+  Azure Resource Locks
 
-#### Monitor
+### Monitor
 Log Analytics workspace
 
 ### KeyVault Dev and Ops
@@ -35,10 +35,10 @@ Azure Storage Account, Azure File shares, Blobs, and other storage services
         -	[X] Setup Recovery Service vault and backup policy for VM backup
         -	[X] Apply Azure Resource lock on business-critical resources
         -	[X] Create Azure policies
-          -	[X] Enforce Tags
-          -	[X] Enforce Naming convention
-          -	[X] Enforce resource deployment location
-          -	[X] Stop RDP and SSH access from internet
+            -	[X] Enforce Tags
+            -	[X] Enforce Naming convention
+            -	[X] Enforce resource deployment location
+            -	[X] Stop RDP and SSH access from internet
 
 
 2.  Compute 
