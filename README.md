@@ -9,7 +9,7 @@ Contains Infrastructure as code ARM templates and PowerShell scripts to be used 
 ## General IaC Automation Catalog
 
 1.	Common Resources
-  	1. Create and configure 
+  	1.Create and configure 
         -	[ ] Create Key vault and grant access for disk encryption
         -	[ ] Create Log analytics workspace
         -	[ ] Setup Recovery Service vault and backup policy for VM backup
@@ -20,29 +20,28 @@ Contains Infrastructure as code ARM templates and PowerShell scripts to be used 
         -	[ ] Enforce resource deployment location
         -	[ ] Stop RDP and SSH access from internet
 2.  Compute 
-    1. Create and configure
-      -	Create new resource group or use existing
-      -	Create Windows and Linux VMs from Marketplace image
-      -	Create Windows and Linux VMs from custom image
-      -	Multiple size options
-      -	Option for Availability Set and Availability Zone
-      -	Dynamic number of data disks
-      -	Option for public IP
-      -	Option for boot diagnostic, use existing or create new storage account
-      -	Enable OS guest diagnostic
-      -	Option to join into Domain
-      -	Option to do disk encryption
-      -	Option to attach to log analytics workspace
-      -	Option to install Microsoft Anti-malware protection
-      -	Option to initiate backup
-
-   2.2	Manage
-    -	Add additional disk to the VM
-    -	Do disk encryption to the VM
-    -	Attach ad hoc public IP
-    -	Attach to log analytics workspace
-   	- Configure VM Start and Stop
-    -	Enable backup on existing VMs
+    1.Create and configure
+        -	[ ] Create new resource group or use existing
+        -	[ ] Create Windows and Linux VMs from Marketplace image
+        - [ ] Create Windows and Linux VMs from custom image
+        -	[ ] Multiple size options
+        -	[ ] Option for Availability Set and Availability Zone
+        -	[ ] Dynamic number of data disks
+        -	[ ] Option for public IP
+        -	[ ] Option for boot diagnostic, use existing or create new storage account
+        -	[ ] Enable OS guest diagnostic
+        -	[ ] Option to join into Domain
+        -	[ ] Option to do disk encryption
+        -	[ ] Option to attach to log analytics workspace
+        -	[ ] Option to install Microsoft Anti-malware protection
+        -	[ ] Option to initiate backup
+    2.Manage
+        -	[ ] Add additional disk to the VM
+        -	[ ] Do disk encryption to the VM
+        -	[ ] Attach ad hoc public IP
+        -	[ ] Attach to log analytics workspace
+        - [ ] Configure VM Start and Stop
+        -	[ ] Enable backup on existing VMs
 
   2.3	Security
     -	Apply resource lock on business-critical resources
